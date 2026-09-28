@@ -1,0 +1,52 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+backend/.session_secret
+
+# Provided SQLite database (and journal/WAL files)
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*-wal
+*-shm
+
+# Provided data and product images
+data/
+products/
+product_images/
+**/public/products/
+**/static/products/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Logs and OS/editor files
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Generated product cutouts (derived from the provided images)
+backend/.cache/
+
+# Audit trail side files (the trail itself, output/audit_trail.json, IS committed)
+output/audit_trail.json.tmp
+output/audit_trail.unreadable-*.json
+*.tmp
+
+# Local tool settings
+.claude/

@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Customs: app check</title>
+    <style>
+      :root {
+        --yale: #00356b;
+        --sky: #286dc0;
+        --navy: #0a2240;
+        --mist: #edf1f6;
+        --line: #d5dce7;
+        --muted: #56647a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+        color: var(--navy);
+        background: #fff;
+      }
+      header {
+        background: var(--yale);
+        color: #fff;
+        padding: 2.5rem 1.5rem 2rem;
+      }
+      header .inner,
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 0.4rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        font-size: 2.4rem;
+        line-height: 1.1;
+      }
+      header p {
+        margin: 0;
+        max-width: 46rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      nav {
+        margin-top: 1.2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      nav a {
+        padding: 0.35rem 0.9rem;
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        border-radius: 999px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+      nav a:hover {
+        background: #fff;
+        color: var(--yale);
+      }
+      main {
+        padding: 1rem 1.5rem 4rem;
+      }
+      section {
+        padding: 2.5rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      section:last-of-type {
+        border-bottom: 0;
+      }
+      h2 {
+        margin: 0 0 0.6rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.7rem;
+        line-height: 1.2;
+      }
+      .proves {
+        max-width: 50rem;
+        margin: 0 0 1.2rem;
+        font-size: 1.05rem;
+      }
+      .shot {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px -28px rgba(10, 34, 64, 0.5);
+      }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .caption {
+        margin: 0.6rem 0 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .evidence {
+        margin-top: 1.4rem;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+        background: var(--mist);
+        font-size: 0.95rem;
+      }
+      .evidence h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+      }
+      .evidence p {
+        margin: 0.4rem 0 0;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 0.4rem;
+      }
+      th,
+      td {
+        padding: 0.3rem 0.9rem 0.3rem 0;
+        text-align: left;
+        font-variant-numeric: tabular-nums;
+      }
+      th {
+        font-weight: 700;
+        border-bottom: 1px solid var(--line);
+      }
+      .hit td {
+        font-weight: 700;
+        color: var(--yale);
+      }
+      code {
+        font-size: 0.88em;
+        background: #fff;
+        padding: 0.1em 0.35em;
+        border-radius: 4px;
+      }
+      header code {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+      }
+      footer {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+      /* Printing / Save as PDF: keep brand colors, drop the jump links, one check per page. */
+      @media print {
+        @page {
+          margin: 14mm 12mm;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        body {
+          font-size: 12pt;
+        }
+        header {
+          padding: 1.4rem 1.2rem;
+        }
+        header nav {
+          display: none;
+        }
+        main {
+          padding: 0 0.4rem;
+        }
+        section {
+          padding: 1.2rem 0 0;
+          border-bottom: 0;
+        }
+        section + section {
+          break-before: page;
+        }
+        h2 {
+          break-after: avoid;
+        }
+        .proves,
+        .shot,
+        .caption,
+        .evidence,
+        table {
+          break-inside: avoid;
+        }
+        .proves {
+          break-after: avoid;
+        }
+        .shot {
+          box-shadow: none;
+        }
+        a.shot {
+          color: inherit;
+        }
+        /* The capture date is in the header, so the footer would only add a near-empty last page. */
+        footer {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Campus Customs: app check</h1>
+        <p>
+          Three screenshots from the running app (React + Vite frontend at <code>localhost:5173</code>, FastAPI +
+          PydanticAI backend at <code>localhost:8000</code>, <code>data/campus_customs.db</code>). Every one is a real
+          capture of the live site as a guest shopper, not a mockup, taken on September 28, 2026. Click any screenshot to
+          open it full size.
+        </p>
+        <nav aria-label="Checks">
+          <a href="#inventory">1. Honest price and stock</a>
+          <a href="#search">2. Search results as cards</a>
+          <a href="#filters">3. Products page filters</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="inventory">
+        <h2>1. The chat answers a price and stock question from the database</h2>
+        <p class="proves">
+          Asked "How much is the Boola Boola T Shirt, and do you have it in large or XL?", the chat answers $32, XL in
+          stock with 2 left, and L sold out. That matches the database exactly, and the product page's own size tiles
+          beside it ("Sold out" on L, "Only 2 left" on XL). Because L is sold out, it also offers two similar navy tees
+          that really have L in stock.
+        </p>
+        <a class="shot" href="app_check_images/inventory.png">
+          <img src="app_check_images/inventory.png" alt="Boola Boola T Shirt product page with the chat open. The chat says the shirt is $32, XL has 2 left and L is sold out; the size tiles show L sold out and XL only 2 left." />
+        </a>
+        <p class="caption">Screenshot: <code>app_check_images/inventory.png</code>, product page at 1920 × 1080.</p>
+        <div class="evidence">
+          <h3>Database answer we already knew</h3>
+          <code>SELECT c.price, i.size, i.quantity FROM catalogue c JOIN inventory i USING(product_id) WHERE product_id = 'boola-boola-t-shirt'</code>
+          <table>
+            <thead>
+              <tr><th>Size</th><th>Quantity</th><th>Price</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>XS</td><td>12</td><td>$32.00</td></tr>
+              <tr><td>S</td><td>12</td><td>$32.00</td></tr>
+              <tr><td>M</td><td>15</td><td>$32.00</td></tr>
+              <tr class="hit"><td>L</td><td>0 (sold out)</td><td>$32.00</td></tr>
+              <tr class="hit"><td>XL</td><td>2</td><td>$32.00</td></tr>
+              <tr><td>XXL</td><td>20</td><td>$32.00</td></tr>
+            </tbody>
+          </table>
+          <p>
+            The alternatives are real too: District Tri Blend T Shirt Vintage Shield has 8 in L and Football Left Chest
+            T Shirt has 2 in L, both $32. The backend log for this message shows the tool call
+            <code>check_size_stock</code>, and the reply is automatically rejected if it states a price or stock number
+            no tool returned.
+          </p>
+        </div>
+      </section>
+
+      <section id="search">
+        <h2>2. A category question fills the page with product cards</h2>
+        <p class="proves">
+          After "what hoodies do you have?", the agent returns structured search results. The website shows all 27
+          matching hoodies as regular product cards (image, name, price, short description) under "27 matches for
+          'hoodies'", and the chat links to them with "Showing 27 matches on the page". The cards come from the search
+          tool's database results, not from the chat's wording, and each one opens its product page.
+        </p>
+        <a class="shot" href="app_check_images/search_results.png">
+          <img src="app_check_images/search_results.png" alt="Home page with a section titled 27 matches for hoodies showing hoodie product cards, and the chat reply saying it found 27 hoodies priced from $45 to $88." />
+        </a>
+        <p class="caption">Screenshot: <code>app_check_images/search_results.png</code>, home page at 1440 × 900.</p>
+        <div class="evidence">
+          <h3>Matches the catalogue</h3>
+          <p>
+            The catalogue has 27 hoodies (the same count as the Products page's Hoodies filter), priced $45 to $88.
+            That's exactly the range the chat states, taken from the search tool's <code>min_price</code> and
+            <code>max_price</code> across every match.
+          </p>
+        </div>
+      </section>
+
+      <section id="filters">
+        <h2>3. Usability improvement: search and filter controls on the Products page</h2>
+        <p class="proves">
+          Shoppers can narrow the catalogue by keyword, category, size in stock, price and color, and sort it. Here Size
+          L in stock, Under $60 and Navy are combined, which cuts 102 products down to 33. Each card leads with how many
+          are left in L, and each filter can be removed with its chip or all at once with "Clear all".
+        </p>
+        <a class="shot" href="app_check_images/usability_filters.png">
+          <img src="app_check_images/usability_filters.png" alt="Products page with filters for size L, under $60 and navy selected, showing 33 of 102 products and filter chips above the product grid." />
+        </a>
+        <p class="caption">
+          Screenshot: <code>app_check_images/usability_filters.png</code>, <code>/products?size=L&amp;max=60&amp;color=Navy</code> at
+          1440 × 900.
+        </p>
+        <div class="evidence">
+          <h3>Checked against the data</h3>
+          <p>
+            Every one of the 33 products shown has at least one L in stock, costs $60 or less, and lists a navy color.
+            Sold-out-in-L items like the Boola Boola T Shirt drop out as soon as L is selected. The filters live in the
+            URL, so this exact view reloads the same way.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>Captured from the running app on September 28, 2026. Screenshots live in <code>output/app_check_images/</code>.</footer>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+# Backend (FastAPI + PydanticAI). Install from the repo root: pip install -r requirements.txt
+# Tested with Python 3.14 and the versions noted.
+fastapi>=0.115              # web API (tested 0.141.1)
+uvicorn>=0.30               # ASGI server (tested 0.54.0)
+watchfiles>=0.21            # powers `uvicorn --reload` (tested 1.3.0)
+pydantic>=2.7               # request/response and tool-result models (tested 2.13.5)
+pydantic-ai-slim[openai]>=2.51,<3   # agent loop + OpenAI client used through Portkey (tested 2.51.0)
+python-dotenv>=1.0.1        # loads PORTKEY_API_KEY from .env (tested 1.2.3)
+pillow>=10.4                # product image cutouts (tested 12.3.0)
